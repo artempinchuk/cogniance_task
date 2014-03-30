@@ -1,0 +1,16 @@
+CREATE DATABASE Snb_shop;
+
+Create table Customers (CustomerID int(8) not null auto_increment primary key, Name varchar(20), Number char(10), City varchar(20))
+INSERT INTO Customers VALUES ('','Artem', '0632269818','Kiev'), ('','Alexander', '0962584174','Odessa'), ('','Ivan', '0954432156','Lviv'), ('','Sasha', '0558795123','Kiev')
+
+Create table Items (ItemsID int(8) not null auto_increment primary key, Items_description varchar(255), Quantity int(3), Price float(9,2))
+INSERT INTO Items VALUES ('','Never Summer Revolver 4.0', '1','3479,4'), ('','Never Summer Premier F1', '3','3479,4'), ('','Never Summer SL', '5','3443,7'), ('','Never Summer Proto HD', '1','3599'), ('','Capita Micro-Scope', '5','1094,5'), ('','Capita 13/14 Defenders of awesome', '1','2831'), ('','Capita 13/14 DBX', '2','3491')
+
+Create table Sale (sale_id int(8) not null auto_increment, ItemsID int(8) not null, Sale_date date, CustomerID int(8) not null, primary key (sale_id), FOREIGN KEY (ItemsID) REFERENCES Items(ItemsID), FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID))
+Insert into sale values ('', '5', '2012-10-10','1'), ('', '1', '2013-03-02','3'), ('', '8','2013-12-12','4'), ('', '6', '2014-12-03', '2')
+
+Запросы sql 
+1.	SELECT name FROM customers WHERE city='Kiev'
+2.	SELECT sale_date FROM Sale inner join customers on customers.customerID=sale.customerID
+where name='Artem'
+3.	SELECT COUNT( city ) , city FROM customers GROUP BY city
